@@ -133,7 +133,7 @@ Then you can call your rule when you declare your fields
 
 ## Contributing
 
-1. Fork it ( https://github.com/angelodlfrtr/breizhipsum/fork  )
+1. Fork it ( https://github.com/angelodlfrtr/vanilla-form-validator/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
