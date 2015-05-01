@@ -1,6 +1,8 @@
 # Color validator
 #
 # Test color validity
+#
+# From: https://github.com/formvalidation/formvalidation/blob/master/src/js/validator/color.js
 
 VanillaFormValidator.addRule 'color', (value, opts) ->
 
