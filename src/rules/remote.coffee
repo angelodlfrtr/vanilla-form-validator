@@ -1,8 +1,10 @@
 # Remote validator
 #
 # Validate value via ajax request
+#
+# Ajax response must be : { valid: true } or { valid: false } in JSON format
 
-VanillaFormValidator.addRule 'remote', (opts) ->
+VanillaFormValidator.addRule 'remote', (value, opts) ->
 
   xhr        = new XMLHttpRequest()
   url        = opts['url'] or '/'

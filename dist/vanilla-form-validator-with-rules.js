@@ -343,7 +343,7 @@
 }).call(this);
 
 (function() {
-  VanillaFormValidator.addRule('remote', function(opts) {
+  VanillaFormValidator.addRule('remote', function(value, opts) {
     var async, c, field_name, json, type, url, xhr, xhr_args;
     xhr = new XMLHttpRequest();
     url = opts['url'] || '/';
