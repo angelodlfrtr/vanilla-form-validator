@@ -229,7 +229,7 @@
   VanillaFormValidator.addRule('color', function(value, opts) {
     var format, keywords, re, re_int, re_per;
     if (value === '') {
-      return false;
+      return true;
     }
     format = opts['format'] || 'hex';
     switch (format) {
@@ -261,6 +261,9 @@
 (function() {
   VanillaFormValidator.addRule('email', function(value, opts) {
     var re;
+    if (value === '') {
+      return true;
+    }
     re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
     return re.test(value);
   });
@@ -328,6 +331,9 @@
 
 (function() {
   VanillaFormValidator.addRule('number', function(value, opts) {
+    if (value === '') {
+      return true;
+    }
     return value - parseFloat(value) + 1 >= 0;
   });
 
@@ -336,6 +342,9 @@
 (function() {
   VanillaFormValidator.addRule('regexp', function(value, opts) {
     var re;
+    if (value === '') {
+      return true;
+    }
     re = opts['regexp'];
     return re.test(value);
   });
@@ -345,6 +354,9 @@
 (function() {
   VanillaFormValidator.addRule('remote', function(value, opts) {
     var async, c, field_name, json, type, url, xhr, xhr_args;
+    if (value === '') {
+      return true;
+    }
     xhr = new XMLHttpRequest();
     url = opts['url'] || '/';
     type = opts['type'] || 'GET';
@@ -373,7 +385,7 @@
   VanillaFormValidator.addRule('url', function(value, opts) {
     var re;
     if (value === '') {
-      return false;
+      return true;
     }
     re = new RegExp('^(https?:\\/\\/)?' + '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + '((\\d{1,3}\\.){3}\\d{1,3}))' + '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + '(\\?[;&a-z\\d%_.~+=-]*)?' + '(\\#[-a-z\\d_]*)?$', 'i');
     return re.test(value);

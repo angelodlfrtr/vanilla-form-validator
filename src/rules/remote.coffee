@@ -6,6 +6,8 @@
 
 VanillaFormValidator.addRule 'remote', (value, opts) ->
 
+  return true if value is ''
+
   xhr        = new XMLHttpRequest()
   url        = opts['url'] or '/'
   type       = opts['type'] or 'GET'

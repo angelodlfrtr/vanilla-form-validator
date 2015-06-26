@@ -2,7 +2,7 @@
   VanillaFormValidator.addRule('color', function(value, opts) {
     var format, keywords, re, re_int, re_per;
     if (value === '') {
-      return false;
+      return true;
     }
     format = opts['format'] || 'hex';
     switch (format) {

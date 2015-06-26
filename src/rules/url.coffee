@@ -4,7 +4,7 @@
 
 VanillaFormValidator.addRule 'url', (value, opts) ->
 
-  return false if value is ''
+  return true if value is ''
 
   re = new RegExp('^(https?:\\/\\/)?' +
                   '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' +

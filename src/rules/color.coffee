@@ -6,7 +6,7 @@
 
 VanillaFormValidator.addRule 'color', (value, opts) ->
 
-  return false if value is ''
+  return true if value is ''
 
   format = opts['format'] or 'hex'
 

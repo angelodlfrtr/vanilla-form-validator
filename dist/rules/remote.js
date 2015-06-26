@@ -1,6 +1,9 @@
 (function() {
   VanillaFormValidator.addRule('remote', function(value, opts) {
     var async, c, field_name, json, type, url, xhr, xhr_args;
+    if (value === '') {
+      return true;
+    }
     xhr = new XMLHttpRequest();
     url = opts['url'] || '/';
     type = opts['type'] || 'GET';
