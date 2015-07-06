@@ -1,5 +1,8 @@
 (function() {
   VanillaFormValidator.addRule('length', function(value, opts) {
+    if (value === '') {
+      return true;
+    }
     if (opts['length']) {
       return value.length === opts['length'];
     }

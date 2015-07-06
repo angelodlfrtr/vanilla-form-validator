@@ -4,6 +4,9 @@
 
 VanillaFormValidator.addRule 'length', (value, opts) ->
 
+  # Return true if value is empty
+  return true if value is ''
+
   # Exact length
   return value.length is opts['length'] if opts['length']
 
