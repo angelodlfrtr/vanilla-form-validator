@@ -10,31 +10,121 @@ describe("Number rule", function(){
       { type: 'text', name: "lala" }
     ];
 
-    var fields = {
-      'lala': {
-        validators: {
-          number: {
-            message: 'Invalid'
-          }
-        }
-      }
-    }
-
-    validator = spec_helpers.construct_form(form_datas, fields);
+    validator = spec_helpers.construct_form(form_datas, {});
   });
 
-  it('Should have valid number', function(){
+  // Max and Min ====================================================================
 
-    var element   = validator.getDomField('lala');
-    element.value = '0899';
+  it('should have valid number with max and min', function(){
+
+    var element = validator.getDomField('lala');
+
+    validator.addField('lala', {
+      validators: {
+        number: {
+          message: 'Invalid',
+          max: 10,
+          min: 9
+        }
+      }
+    });
+
+    element.value = '9';
 
     expect(validator.valid()).toBe(true);
   });
 
-  it('Should have invalid number', function(){
+  it('should have invalid number with max and min', function(){
 
-    var element   = validator.getDomField('lala');
-    element.value = 'h499';
+    var element = validator.getDomField('lala');
+
+    validator.addField('lala', {
+      validators: {
+        number: {
+          message: 'Invalid',
+          max: 10,
+          min: 9
+        }
+      }
+    });
+
+    element.value = '3';
+
+    expect(validator.valid()).toBe(false);
+  });
+
+  // Max ============================================================================
+
+  it('should have valid number with max', function(){
+
+    var element = validator.getDomField('lala');
+
+    validator.addField('lala', {
+      validators: {
+        number: {
+          message: 'Invalid',
+          max: 10
+        }
+      }
+    });
+
+    element.value = '9';
+
+    expect(validator.valid()).toBe(true);
+  });
+
+  it('should have invalid number with max', function(){
+
+    var element = validator.getDomField('lala');
+
+    validator.addField('lala', {
+      validators: {
+        number: {
+          message: 'Invalid',
+          max: 10
+        }
+      }
+    });
+
+    element.value = '11';
+
+    expect(validator.valid()).toBe(false);
+  });
+
+  // Min ============================================================================
+
+  it('should have valid number with min', function(){
+
+    var element = validator.getDomField('lala');
+
+    validator.addField('lala', {
+      validators: {
+        number: {
+          message: 'Invalid',
+          min: 10
+        }
+      }
+    });
+
+    element.value = '11';
+
+    expect(validator.valid()).toBe(true);
+  });
+
+  it('should have invalid number with min', function(){
+
+    var element = validator.getDomField('lala');
+
+    validator.addField('lala', {
+      validators: {
+        number: {
+          message: 'Invalid',
+          min: 10
+        }
+      }
+    });
+
+    element.value = '9';
 
     expect(validator.valid()).toBe(false);
   });

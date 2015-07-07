@@ -19,4 +19,3 @@ VanillaFormValidator.addRule 'length', (value, opts) ->
 
   # Max
   return value.length <= opts['max'] if opts['max']
-
