@@ -15,14 +15,30 @@ VanillaFormValidator.addRule 'remote', (value, opts) ->
   field_name = opts['name'] or opts['element'].name
   xhr_args   = null
 
+  params = {}
+  params[field_name] = value
+
+  if opts['params']
+    for k, v of opts['params']
+      params[k] = v
+
+  paramsToStr = (params) ->
+
+    str = []
+
+    for k, v of params
+      str.push "#{encodeURIComponent(k)}=#{encodeURIComponent(v)}"
+
+    str.join('&')
+
   if type is 'GET'
 
-    c   = "?#{encodeURIComponent(field_name)}=#{encodeURIComponent(value)}"
+    c   = "?#{paramsToStr(params)}"
     url += c
 
   else
 
-    xhr_args = "?#{encodeURIComponent(field_name)}=#{encodeURIComponent(value)}"
+    xhr_args = "#{paramsToStr(params)}"
 
   xhr.open(type, url, async)
   xhr.send(xhr_args)

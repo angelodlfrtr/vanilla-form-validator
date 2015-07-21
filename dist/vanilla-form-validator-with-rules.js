@@ -387,7 +387,7 @@
 
 (function() {
   VanillaFormValidator.addRule('remote', function(value, opts) {
-    var async, c, field_name, json, type, url, xhr, xhr_args;
+    var async, c, field_name, json, k, params, paramsToStr, ref, type, url, v, xhr, xhr_args;
     if (value === '') {
       return true;
     }
@@ -397,11 +397,29 @@
     async = false;
     field_name = opts['name'] || opts['element'].name;
     xhr_args = null;
+    params = {};
+    params[field_name] = value;
+    if (opts['params']) {
+      ref = opts['params'];
+      for (k in ref) {
+        v = ref[k];
+        params[k] = v;
+      }
+    }
+    paramsToStr = function(params) {
+      var str;
+      str = [];
+      for (k in params) {
+        v = params[k];
+        str.push((encodeURIComponent(k)) + "=" + (encodeURIComponent(v)));
+      }
+      return str.join('&');
+    };
     if (type === 'GET') {
-      c = "?" + (encodeURIComponent(field_name)) + "=" + (encodeURIComponent(value));
+      c = "?" + (paramsToStr(params));
       url += c;
     } else {
-      xhr_args = "?" + (encodeURIComponent(field_name)) + "=" + (encodeURIComponent(value));
+      xhr_args = "" + (paramsToStr(params));
     }
     xhr.open(type, url, async);
     xhr.send(xhr_args);
